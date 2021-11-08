@@ -28,7 +28,7 @@ Please kindly remember that **DO NOT** commit on master branch. We should follow
 ```
     cd Ansible-TOAA05
     git branch
-    git checkout -b "feature/NguyenVanA"
+    git checkout -b "feature/NguyenVanAA"
 ```
 3. Add and commit code on branch feature
 
