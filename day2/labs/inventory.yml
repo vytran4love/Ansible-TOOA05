@@ -1,0 +1,27 @@
+---
+Web:
+  hosts:
+    10.0.[0:1].71:
+    10.0.2.[70:71]:
+API:
+  hosts:
+    10.0.[0:1].72:
+    10.0.2.[72:73]:
+Nightly:
+  hosts:
+    10.0.0.[71:72]:
+  vars:
+    ansible_ssh_private_key_file: dev.pem
+Staging:
+  hosts:
+    10.0.1.[71:72]:
+  vars:
+    ansible_ssh_private_key_file: staging.pem
+Prod:
+  hosts:
+    10.0.2.[71:72]:
+  vars:
+    ansible_ssh_private_key_file: prod.pem
+all:
+  vars:
+    ansible_user=ubuntu
