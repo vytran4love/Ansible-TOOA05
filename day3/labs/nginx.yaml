@@ -1,0 +1,21 @@
+# Ansible playbook install nginx
+- name: Setup Nginx
+  hosts: webserver
+  gather_facts: yes
+  become: yes
+  tasks:
+
+tasks:
+  - name: Apt update
+    apt: update_cache=yes
+
+  - name: Install Nginx latest version
+    package:
+      name: nginx
+      state: present
+    notify: Restart Nginx
+
+handlers:
+  - name: Restart nginx
+    state: restarted
+    enabled: yes
