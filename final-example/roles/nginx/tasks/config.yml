@@ -1,0 +1,22 @@
+- name: Create log dicrectory for vhost
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - "{{ vhost_log_dir }}"
+
+- name: Copy nginx main config
+  template:
+    src: "templates/nginx.conf.j2"
+    dest: "/etc/nginx/nginx.conf"
+  notify:
+    - Validate Nginx
+    - Restart Nginx
+- name: Copy nginx default.conf to conf.d
+  template:
+    src: "templates/default.conf.j2"
+    dest: "/etc/nginx/sites-available/default"
+  notify:
+    - Validate Nginx
+    - Restart Nginx

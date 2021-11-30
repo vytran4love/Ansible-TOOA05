@@ -1,0 +1,16 @@
+# tasks file for Nginx
+#
+- name: Install and configure Nginx
+  include_tasks: "{{ item }}"
+  with_items:
+    - install.yml
+    - config.yml
+   
+- name: Create virtual host
+  include: vhost.yml vhost={{ item }}
+  with_items:
+    - "{{ vhost01 }}"
+    - "{{ vhost02 }}"
+
+- name: Deploy source code for virtual hosts
+  include_tasks: deploy.yml

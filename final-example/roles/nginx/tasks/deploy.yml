@@ -1,0 +1,7 @@
+- name: Deploy source code for virtual hosts
+  copy:
+    src={{ item.src }} dest={{ item.dest }} 
+  with_items:
+    - {src: "files/index.html", dest: "/var/www/{{vhost01}}"}
+    - {src: "files/phpinfo.php", dest: "/var/www/{{vhost02}}/index.php"}
+

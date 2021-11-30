@@ -1,0 +1,7 @@
+---
+- name: "Allow HTTP port on UFW"
+  ufw:
+    rule: allow
+    port: '{{ http_port }}'
+    proto: tcp
+  when: ansible_os_family == 'Debian'

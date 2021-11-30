@@ -1,0 +1,13 @@
+---
+# handlers file for apache2
+
+- name: Validate Nginx
+  command: nginx -t
+  changed_when: false
+
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
+    enabled: yes
+
