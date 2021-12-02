@@ -2,5 +2,5 @@
 # handlers file for php
 - name: start php
   command: |
-    sudo systemctl start php7.4-fpm
-    sudo systemctl enable php7.4-fpm
+    sudo systemctl start 
+    sudo systemctl enable 
