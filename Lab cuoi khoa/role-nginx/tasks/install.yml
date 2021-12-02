@@ -1,17 +1,6 @@
 ---
-- name: override file nginx.conf
-  template:
-    src: "nginx.conf.j2"
-    dest: "/etc/nginx/nginx.conf"
-- name: configure external vhosts
-  copy: 
-    src: "{{vhost_directory}}"
-    dest: "/etc/nginx/conf.d/"
-  when: force_use_external_vhost
-  notify:
-    - validate nginx
-    - reload nginx
-- name: copy code 
-  copy:
-    src: "/home/thanhthuan/www/"
-    dest: "/var/www/"
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+  notify: start nginx
