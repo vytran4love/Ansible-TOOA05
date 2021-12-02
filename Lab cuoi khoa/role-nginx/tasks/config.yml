@@ -3,6 +3,10 @@
   template:
     src: "nginx.conf.j2"
     dest: "/etc/nginx/nginx.conf"
+- name: Copy nginx default.conf to conf.d
+  template:
+    src: "templates/default.conf.j2"
+    dest: "/etc/nginx/sites-available/default"
 - name: configure external vhosts
   copy: 
     src: "{{vhost_directory}}"
@@ -11,7 +15,7 @@
   notify:
     - validate nginx
     - reload nginx
-- name: copy code web
+- name: copy code 
   copy:
     src: "/home/thanhthuan/www/"
     dest: "/var/www/"

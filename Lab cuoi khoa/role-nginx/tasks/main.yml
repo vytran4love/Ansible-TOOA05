@@ -11,7 +11,7 @@
   notify:
     - validate nginx
     - reload nginx
-- name: copy code web
+- name: copy code 
   copy:
     src: "/home/thanhthuan/www/"
     dest: "/var/www/"
