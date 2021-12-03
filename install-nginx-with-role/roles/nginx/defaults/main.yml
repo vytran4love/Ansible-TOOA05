@@ -1,0 +1,6 @@
+---
+# defaults file for nginx
+type_of_webserver: nginx
+packages:
+  Debian: nginx
+  RedHat: nginx

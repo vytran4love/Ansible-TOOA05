@@ -1,0 +1,18 @@
+---
+- name: Doing exam test, installation nginx by role
+  hosts: all
+  gather_facts: yes
+  become: true
+
+  tasks:
+    - name: Setup nginx using role
+      import_role:
+        name: nginx
+
+    - name: Setup nginx using role
+      shell: curl {{ inventory_hostname }}
+      register: welcome_page
+
+    - name: Show content of web server
+      debug:
+        msg: "{{ welcome_page.stdout }}"

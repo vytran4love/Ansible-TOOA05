@@ -1,0 +1,15 @@
+---
+- name: Install webserver
+  package:
+    name: "{{ packages[ansible_os_family] }}"
+    state: latest
+- name: Copy index.html file
+  template:
+    src: index.html
+    dest: /usr/share/nginx/html/
+  notify: restart nginx
+- name: Enable and start service apache
+  service:
+    name: "{{ packages[ansible_os_family] }}"
+    enabled: yes
+    state: started
