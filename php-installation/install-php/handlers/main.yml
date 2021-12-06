@@ -1,0 +1,11 @@
+---
+# handlers file for install-php
+- name: start nginx
+  systemd:
+    name: nginx
+    state: started
+    enabled: true
+- name: Restart nginx
+  systemd:
+    name: nginx
+    state: restarted

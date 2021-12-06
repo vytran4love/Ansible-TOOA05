@@ -1,0 +1,12 @@
+---
+# tasks file for install-php
+- include: extension-php-install.yaml
+  when: ansible_os_family == "RedHat"
+  tags:
+    - extension
+- include: install.yml
+  tags:
+    - install
+- include: config.yaml
+  tags:
+    - config

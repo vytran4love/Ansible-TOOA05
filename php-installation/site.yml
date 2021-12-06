@@ -1,0 +1,26 @@
+---
+- name: Doing exam test, installation php by role
+  hosts: all
+  gather_facts: yes
+  become: true
+
+  tasks:
+    - name: Setup php using role
+      import_role:
+        name: install-php
+    - name: Add hostname of domain
+      shell: |
+        echo "{{ ansible_default_ipv4['address'] }} test1.com" >> /etc/hosts
+        echo "{{ ansible_default_ipv4['address'] }} test2.com" >> /etc/hosts
+    - name: Check content web 1
+      command:  curl test1.com
+      register: contentweb1
+    - name: Show content of web 1
+      debug:
+        msg: "{{ contentweb1.stdout }}"
+    - name: Check content web 2
+      command: curl test2.com
+      register: contentweb2
+    - name: Show content of web 2
+      debug:
+        msg: "{{ contentweb2.stdout }}"

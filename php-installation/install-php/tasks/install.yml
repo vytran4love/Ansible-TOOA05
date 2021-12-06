@@ -1,0 +1,13 @@
+---
+# tasks file for install-php
+- name: Install php
+  package:
+    name: php
+    state: present
+  notify: start nginx
+- name: Check version php
+  shell: php --version
+  register: checkversion
+- name: Show version of php
+  debug:
+    msg:  "{{ checkversion.stdout }}"

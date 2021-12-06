@@ -1,0 +1,41 @@
+---
+- name: Add sites-available and sites-enabled
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/nginx/sites-available
+    - /etc/nginx/sites-enabled
+    - /var/www/test1.com/html/
+    - /var/www/test2.com/html/
+- name: Copy web 1 content
+  copy:
+    src: test1.com/html/index.php
+    dest: /var/www/test1.com/html/
+- name: Copy web 2 content
+  copy:
+    src: test2.com/html/index.php
+    dest: /var/www/test2.com/html/
+- name: Copy vhost file
+  copy:
+    src: config-domain/
+    directory_mode: true
+    dest: /etc/nginx/sites-available/
+- name: Export version PHP in file
+  shell: php --version > /var/www/test2.com/html/index.php
+- name: Copy nginx configuration file for Centos
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/
+  when: ansible_os_family == "RedHat"
+- name: Enable server blocks
+  file:
+    src: /etc/nginx/sites-available/{{ item }}
+    dest: /etc/nginx/sites-enabled/{{ item }}
+    state: link
+  with_items: 
+    - test1.com
+    - test2.com
+  notify: Restart nginx
+
+
