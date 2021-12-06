@@ -3,4 +3,4 @@
   apt:
     name: nginx
     state: present
-  notify: start nginx
+  notify: start nginx 

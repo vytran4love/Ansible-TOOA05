@@ -1,0 +1,19 @@
+- name: Create document root for website "{{ vhost }}"
+  file:
+    path: "/var/www/{{ vhost }}"
+    state: directory
+    mode: '0755'
+
+- name: Copy "{{ vhost }}" config
+  template:
+    src: "templates/vhost.conf.j2"
+    dest: "/etc/nginx/sites-available/{{ vhost }}.conf"
+
+- name: Create a symbolic link "{{ vhost }}".conf to sites-enabled
+  file:
+    src: "/etc/nginx/sites-available/{{ vhost }}.conf"
+    dest: "/etc/nginx/sites-enabled/{{ vhost }}.conf"
+    state: link
+  notify:
+    - validate nginx
+    - start nginx

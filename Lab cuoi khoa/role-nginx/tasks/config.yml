@@ -18,4 +18,4 @@
 - name: copy code 
   copy:
     src: "/home/thanhthuan/www/"
-    dest: "/var/www/"
+    dest: "/var/www/" 

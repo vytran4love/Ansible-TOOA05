@@ -6,3 +6,9 @@
 - include: config
   tags:
     - config
+
+- name: Create virtual host
+  include: vhost.yml vhost={{ item }}
+  with_items:
+    - "{{ vhost01 }}"
+    - "{{ vhost02 }}" 

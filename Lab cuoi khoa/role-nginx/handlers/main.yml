@@ -12,3 +12,4 @@
 - name: validate nginx
   command: nginx -t
   changed_when: false
+ 
